@@ -77,14 +77,14 @@ public class CreatingStreams {
      */
     private void useRangeMethods (){
         List<Integer> ints = IntStream.range(10, 15)
-                .boxed()                                    //Necessary for Collectors to convert primitives to List<T>
+                .boxed()                                    //Necessary for CollectorsExample to convert primitives to List<T>
                 .collect(Collectors.toList());
 
         System.out.println(ints);
         // prints [10, 11, 12, 13, 14]
 
         List<Long> longs = LongStream.rangeClosed(10, 15)
-                .boxed()                                    //Necessary for Collectors to convert primitives to List<T>
+                .boxed()                                    //Necessary for CollectorsExample to convert primitives to List<T>
                 .collect(Collectors.toList());
 
         System.out.println(longs);
