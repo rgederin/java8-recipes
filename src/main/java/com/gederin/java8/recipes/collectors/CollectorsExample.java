@@ -1,5 +1,7 @@
 package com.gederin.java8.recipes.collectors;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +13,9 @@ import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
+
 public class CollectorsExample {
     public static void main(String[] args) {
 
@@ -19,7 +24,7 @@ public class CollectorsExample {
          */
         List<String> superHeroes = Stream.of("Mr. Furious", "The Blue Raja", "The Shoveler",
                 "The Bowler", "Invisible Boy", "The Spleen", "The Sphinx")
-                .collect(Collectors.toList());
+                .collect(toList());
 
         /**
          * Creating Set (HashSet)
@@ -56,6 +61,16 @@ public class CollectorsExample {
 
         actorMap.forEach((key, value) ->
                 System.out.printf("%s played %s%n", key, value));
+    }
+
+    /**
+     * Creating unmodifiable lists or sets in Java 8
+     */
+    @SafeVarargs
+    public final <T> List<T> createImmutableList(T... elements) {
+        return Arrays.stream(elements)
+                .collect(collectingAndThen(toList(),
+                        Collections::unmodifiableList));
     }
 }
 
